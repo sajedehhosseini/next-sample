@@ -33,7 +33,6 @@ const UsersPage = ({ users }) => {
 };
 
 export async function getStaticProps() {
-  // Fetch users from JSONPlaceholder API
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   const users = await response.json();
 
@@ -41,6 +40,7 @@ export async function getStaticProps() {
     props: {
       users,
     },
+    revalidate: 60 * 60, // Revalidate the data every 1 hour (you can adjust the revalidation interval as per your requirement)
   };
 }
 
